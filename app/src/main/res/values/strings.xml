@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MeraImageViewer</string>
+    <string name="title_activity_home_screen">HomeScreenActivityTitle</string>
+    <string name="image_item_parameter">IMAGE_ITEM</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment"></string>
+</resources>
