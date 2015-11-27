@@ -3,6 +3,7 @@ package com.merann.smamonov.meraimageviewer.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -20,6 +21,8 @@ public class HomeScreenActivity extends AppCompatActivity implements ImageLoadSe
 
     ImageLoadService imageLoadService;
     ImageListAdapter imageListAdapter;
+    ScaleGestureDetector scaleDetector;
+    float scaleFactor = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,19 @@ public class HomeScreenActivity extends AppCompatActivity implements ImageLoadSe
         });
 
         imageListAdapter.notifyDataSetChanged();
+
+        scaleDetector = new ScaleGestureDetector(getBaseContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener()
+        {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                scaleFactor *= detector.getScaleFactor();
+                scaleFactor = Math.max(0.1f, Math.min(scaleFactor, 5.0f));
+
+                System.err.println("--->scaleFactor:" + scaleFactor);
+
+                return true;
+            }
+        });
     }
 
     @Override
